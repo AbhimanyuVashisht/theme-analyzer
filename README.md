@@ -1,3 +1,4 @@
+
 ## Theme-Analyzer
 
 Analysing Theme using Deep learning AI - Xane AI
@@ -17,6 +18,3 @@ conda 4.3.30 or newer
 ```bash
    conda list --export > requirement.txt
 ```
-
-
-
