@@ -29,6 +29,7 @@ def adjust_learning_rate(optimizer, epoch):
         param_group['lr'] = lr
     return optimizer
 
+
 if __name__ == "__main__":
     train_file = os.path.join(DATA_DIR, TRAIN_FILE)
     test_file = os.path.join(DATA_DIR, TEST_FILE)
@@ -51,7 +52,7 @@ if __name__ == "__main__":
     # model
     model = LSTMC.LSTM_Classifier(embedding_dim=embedding_dim, hidden_dim=hidden_dim,
                                   vocab_size=len(corpus.dictionary), label_size=n_label, batch_size=BATCH_SIZE)
-
+    print(model)
     # data processing
     dtrain_set = DP.DatasetPreprocessing(DATA_DIR, TRAIN_DIR, TRAIN_FILE, TRAIN_LABEL, sentence_len, corpus)
 
@@ -64,7 +65,7 @@ if __name__ == "__main__":
 
     test_loader = DataLoader(dtest_set,
                              batch_size=BATCH_SIZE,
-                             shuffle=True,
+                             shuffle=False,
                              num_workers=4)
 
     optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE)
@@ -98,9 +99,11 @@ if __name__ == "__main__":
 
             # calc training acc
             _, predicted = torch.max(output.data, 1)
+
+            print(torch.eq(predicted, train_labels))
             total_acc += (predicted == train_labels).sum()
             total += len(train_labels)
-            total_loss += loss.data[0]
+            total_loss += loss.item()
 
         train_loss_.append(total_loss / total)
         train_acc_.append(total_acc / total)
@@ -124,7 +127,7 @@ if __name__ == "__main__":
             _, predicted = torch.max(output.data, 1)
             total_acc += (predicted == test_labels).sum()
             total += len(test_labels)
-            total_loss += loss.data[0]
+            total_loss += loss.item()
         test_loss_.append(total_loss / total)
         test_acc_.append(total_acc / total)
 

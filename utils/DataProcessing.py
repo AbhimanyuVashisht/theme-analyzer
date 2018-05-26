@@ -4,7 +4,7 @@ from torch.utils.data.dataset import Dataset
 import numpy as np
 
 
-class Dictionary:
+class Dictionary(object):
     def __init__(self):
         self.word_to_ix = {}
         self.id_to_word = []
@@ -13,7 +13,7 @@ class Dictionary:
         if word not in self.word_to_ix:
             # filtering out the unique word list
             self.id_to_word.append(word)
-            self.word_to_ix[word] = len(self.id_to_word) -1
+            self.word_to_ix[word] = len(self.id_to_word) - 1
 
     def __len__(self):
         return len(self.id_to_word)
