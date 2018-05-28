@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
-
-
+'''
 doc = pd.read_csv("/Users/jessicasethi/Desktop/trainingandtestdata/training.csv"
                   , encoding='latin-1')
 
@@ -18,7 +17,7 @@ for i in range(raw_corpus.shape[0]):
     if (pd.isnull(raw_corpus[i]) != True):
         raw_corpus[i] = tknzr.tokenize(raw_corpus[i])
 
-
+'''
 
 df = pd.read_csv('/Users/jessicasethi/Documents/amazon_review_full_csv/train.csv')
 arr = np.array(df)
