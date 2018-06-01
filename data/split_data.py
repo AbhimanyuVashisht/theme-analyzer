@@ -5,7 +5,7 @@ TEST_FILE = 'r8-test-all-terms.txt'
 TRAID_DIR = 'train_txt'
 TEST_DIR = 'test_txt'
 
-if __name__=='__main__':
+if __name__ == '__main__':
     train_file = []
     fp = open(os.path.join(DATA_DIR, TRAIN_FILE), 'r')
     labels = {}
