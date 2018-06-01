@@ -1,4 +1,5 @@
 import os
+import copy
 import pickle
 from datetime import datetime
 import torch
@@ -100,8 +101,7 @@ if __name__ == "__main__":
             # calc training acc
             _, predicted = torch.max(output.data, 1)
 
-            print(torch.eq(predicted, train_labels))
-            total_acc += (predicted == train_labels).sum()
+            total_acc += (predicted == train_labels).sum().item()
             total += len(train_labels)
             total_loss += loss.item()
 
@@ -125,7 +125,7 @@ if __name__ == "__main__":
 
             # calc testing acc
             _, predicted = torch.max(output.data, 1)
-            total_acc += (predicted == test_labels).sum()
+            total_acc += (predicted == test_labels).sum().item()
             total += len(test_labels)
             total_loss += loss.item()
         test_loss_.append(total_loss / total)
@@ -142,7 +142,9 @@ if __name__ == "__main__":
 
     filename = 'log/LSTM_classifier_' + datetime.now().strftime("%d-%h-%m-%s") + '.pkl'
     result['filename'] = filename
-
+    # saving the modal
+    torch.save(model)
+    # saving logs
     fp = open(filename, 'wb')
     pickle.dump(result, fp)
     fp.close()
