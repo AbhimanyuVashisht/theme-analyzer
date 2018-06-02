@@ -142,10 +142,13 @@ if __name__ == "__main__":
 
     filename = 'log/LSTM_classifier_' + datetime.now().strftime("%d-%h-%m-%s") + '.pkl'
     result['filename'] = filename
-    # saving the modal
-    torch.save(model)
+    # saving the modal architecture and weights
+    torch.save(model, 'model.pb')
+    # saving the modal 
+    torch.save(model.state_dict(), 'model.pt')
     # saving logs
     fp = open(filename, 'wb')
     pickle.dump(result, fp)
     fp.close()
     print('File %s is saved.' % filename)
+
