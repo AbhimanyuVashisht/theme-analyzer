@@ -43,7 +43,11 @@ class Corpus(object):
                     for word in words:
                         ids[token] = self.dictionary.word_to_ix[word]
                         token += 1
+        self.save_word_corpus()
         return ids
+    def save_word_corpus(self):
+        np.save('word_corpus.npy', self.dictionary.word_to_ix)
+
 
 
 class DatasetPreprocessing(Dataset):

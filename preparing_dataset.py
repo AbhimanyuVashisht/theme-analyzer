@@ -7,8 +7,8 @@ for i, line in enumerate(train):
     filename = str(i+1) + '.txt'
     f_temp = open('amazon_reviews/train_txt/' + filename, 'w+')
     f_temp.writelines(line.split(':')[1].strip())
-    fp_train_label.writelines('\n' + line.split(':')[0][9])
-    fp_train_txt.writelines('\n' + filename)
+    fp_train_label.writelines(line.split(':')[0][9] + '\n')
+    fp_train_txt.writelines(filename + '\n')
     f_temp.close()
 fp_train_label.close()
 fp_train_txt.close()
@@ -22,8 +22,8 @@ for i, line in enumerate(test):
     filename = str(i+1) + '.txt'
     f_temp = open('amazon_reviews/test_txt/' + filename, 'w+')
     f_temp.writelines(line.split(':')[1].strip())
-    fp_test_label.writelines('\n' + line.split(':')[0][9])
-    fp_test_txt.writelines('\n' + filename)
+    fp_test_label.writelines(line.split(':')[0][9] + '\n' )
+    fp_test_txt.writelines(filename + '\n')
     f_temp.close()
 fp_test_label.close()
 fp_test_txt.close()

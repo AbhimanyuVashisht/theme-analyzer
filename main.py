@@ -19,7 +19,7 @@ TRAIN_LABEL = 'train_label.txt'
 TEST_LABEL = 'test_label.txt'
 
 # hyperParameters setting
-EPOCHS = 50
+EPOCHS = 2
 BATCH_SIZE = 5
 LEARNING_RATE = 0.01
 
@@ -86,12 +86,11 @@ if __name__ == "__main__":
         for iter, traindata in enumerate(train_loader):
             train_inputs, train_labels = traindata
             train_labels = torch.squeeze(train_labels)
-
             train_inputs = Variable(train_inputs)
-
             model.zero_grad()
             model.batch_size = len(train_labels)
             model.hidden = model.init_hidden()
+            # print('train_inputs.t() function: ', train_inputs.t())
             output = model(train_inputs.t())
 
             loss = loss_function(output, Variable(train_labels))
@@ -114,9 +113,7 @@ if __name__ == "__main__":
         for iter, testdata in enumerate(test_loader):
             test_inputs, test_labels = testdata
             test_labels = torch.squeeze(test_labels)
-
             test_inputs = Variable(test_inputs)
-
             model.batch_size = len(test_labels)
             model.hidden = model.init_hidden()
             output = model(test_inputs.t())
@@ -143,12 +140,11 @@ if __name__ == "__main__":
     filename = 'log/LSTM_classifier_' + datetime.now().strftime("%d-%h-%m-%s") + '.pkl'
     result['filename'] = filename
     # saving the modal architecture and weights
-    torch.save(model, 'model.pb')
-    # saving the modal 
-    torch.save(model.state_dict(), 'model.pt')
+    # torch.save(model, 'model.pb')
+    # saving the modal
+    torch.save(model, './model.pth')
     # saving logs
     fp = open(filename, 'wb')
     pickle.dump(result, fp)
     fp.close()
     print('File %s is saved.' % filename)
-
