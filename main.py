@@ -90,7 +90,6 @@ if __name__ == "__main__":
             model.zero_grad()
             model.batch_size = len(train_labels)
             model.hidden = model.init_hidden()
-            # print('train_inputs.t() function: ', train_inputs.t())
             output = model(train_inputs.t())
 
             loss = loss_function(output, Variable(train_labels))
