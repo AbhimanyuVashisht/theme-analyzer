@@ -5,7 +5,7 @@ blas=1.0=mkl
 ca-certificates=2018.03.07=0
 certifi=2018.4.16=py36_0
 cffi=1.11.5=py36h9745a5d_0
-cython=0.28.3=py36h14c3975_0
+cython=0.28.3=py36h14c3975_0r
 freetype=2.8=hab7d2ae_1
 intel-openmp=2018.0.0=8
 jpeg=9b=h024ee3a_2
